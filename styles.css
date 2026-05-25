@@ -1,0 +1,347 @@
+/* === BLOXVERSE — стиль === */
+:root{
+  --bg:#0b1020;
+  --bg-2:#0f1530;
+  --card:#161e3d;
+  --card-2:#1b2450;
+  --accent:#ff2a55;
+  --accent-2:#00d4ff;
+  --accent-3:#ffd60a;
+  --text:#e8ecff;
+  --muted:#9aa3c7;
+  --good:#39ff14;
+  --shadow:0 10px 30px rgba(0,0,0,.4);
+  --radius:16px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family:'Segoe UI',Tahoma,system-ui,sans-serif;
+  background:radial-gradient(1200px 800px at 10% -10%, #1a2360 0%, transparent 60%),
+             radial-gradient(1000px 700px at 100% 0%, #3a0d4a 0%, transparent 50%),
+             var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;outline:none}
+
+/* === Top bar === */
+.topbar{
+  position:sticky;top:0;z-index:50;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 32px;
+  background:rgba(11,16,32,.75);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.logo{display:flex;align-items:center;gap:10px;font-weight:900;font-size:22px;letter-spacing:.5px}
+.logo-cube{
+  width:28px;height:28px;border-radius:6px;
+  background:linear-gradient(135deg,var(--accent),var(--accent-2));
+  box-shadow:0 0 20px rgba(255,42,85,.5);
+  animation:spin 6s linear infinite;
+}
+.logo-text span{color:var(--accent)}
+.nav{display:flex;gap:6px}
+.nav a{
+  padding:8px 16px;border-radius:10px;color:var(--muted);font-weight:600;
+  transition:all .2s;
+}
+.nav a:hover{color:#fff;background:rgba(255,255,255,.06)}
+.nav a.active{color:#fff;background:linear-gradient(135deg,var(--accent),var(--accent-2))}
+.user{display:flex;align-items:center;gap:14px}
+.coins{
+  display:flex;align-items:center;gap:6px;
+  padding:6px 14px;border-radius:20px;
+  background:linear-gradient(135deg,#3d2a00,#5e4200);
+  border:1px solid var(--accent-3);
+  font-weight:700;color:var(--accent-3);
+}
+.coin{font-size:18px;text-shadow:0 0 10px var(--accent-3)}
+.avatar-mini{
+  width:40px;height:40px;border-radius:50%;
+  background:linear-gradient(135deg,var(--accent-2),var(--accent));
+  display:grid;place-items:center;font-size:22px;
+  cursor:pointer;border:2px solid rgba(255,255,255,.2);
+  transition:transform .2s;
+}
+.avatar-mini:hover{transform:scale(1.1)}
+
+/* === Hero === */
+.hero{
+  position:relative;
+  padding:80px 32px 100px;
+  text-align:center;
+  overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+  background-size:50px 50px;
+  mask-image:radial-gradient(ellipse at center, black 30%, transparent 70%);
+  animation:drift 30s linear infinite;
+}
+.hero-content{position:relative;z-index:1;max-width:900px;margin:0 auto}
+.hero h1{font-size:60px;font-weight:900;line-height:1.1;margin-bottom:18px}
+.gradient-text{
+  background:linear-gradient(135deg,var(--accent),var(--accent-2),var(--accent-3));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  background-size:200% 200%;animation:shimmer 4s ease infinite;
+}
+.hero p{font-size:20px;color:var(--muted);margin-bottom:32px}
+.hero-actions{display:flex;gap:14px;justify-content:center;margin-bottom:50px;flex-wrap:wrap}
+.hero-stats{display:flex;gap:50px;justify-content:center;flex-wrap:wrap}
+.hero-stats>div{display:flex;flex-direction:column;align-items:center}
+.hero-stats b{font-size:32px;color:var(--accent-2)}
+.hero-stats span{color:var(--muted);font-size:14px}
+
+/* === Buttons === */
+.btn{
+  padding:14px 28px;border-radius:12px;font-weight:700;font-size:16px;
+  transition:transform .15s, box-shadow .2s, filter .2s;
+}
+.btn-primary{
+  background:linear-gradient(135deg,var(--accent),#ff5e8a);
+  color:#fff;
+  box-shadow:0 6px 20px rgba(255,42,85,.4);
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(255,42,85,.6)}
+.btn-ghost{
+  background:rgba(255,255,255,.06);color:#fff;
+  border:1px solid rgba(255,255,255,.15);
+}
+.btn-ghost:hover{background:rgba(255,255,255,.12)}
+
+/* === Sections === */
+main>section{padding:60px 32px;max-width:1280px;margin:0 auto}
+.section-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:30px;flex-wrap:wrap;gap:16px}
+h2{font-size:34px;font-weight:900}
+.filters{display:flex;gap:8px;flex-wrap:wrap}
+.filter-btn{
+  padding:8px 18px;border-radius:20px;
+  background:rgba(255,255,255,.06);color:var(--muted);
+  font-weight:600;transition:all .2s;
+}
+.filter-btn:hover{color:#fff}
+.filter-btn.active{background:var(--accent);color:#fff}
+
+/* === Games grid === */
+.games-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+  gap:20px;
+}
+.game-card{
+  background:var(--card);
+  border-radius:var(--radius);
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.05);
+  transition:transform .2s, box-shadow .3s, border-color .2s;
+  cursor:pointer;
+  display:flex;flex-direction:column;
+}
+.game-card:hover{
+  transform:translateY(-6px);
+  box-shadow:var(--shadow);
+  border-color:var(--accent);
+}
+.game-thumb{
+  height:160px;
+  display:grid;place-items:center;
+  font-size:70px;
+  position:relative;
+  overflow:hidden;
+}
+.game-thumb::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 60%,rgba(0,0,0,.4));
+}
+.game-info{padding:14px 16px}
+.game-info h4{font-size:17px;margin-bottom:6px;font-weight:800}
+.game-meta{display:flex;justify-content:space-between;color:var(--muted);font-size:13px}
+.game-meta .players::before{content:'👥 '}
+.game-meta .rating{color:var(--accent-3)}
+.game-tag{
+  position:absolute;top:10px;left:10px;
+  padding:3px 10px;border-radius:6px;
+  background:rgba(0,0,0,.5);font-size:11px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.5px;z-index:1;
+}
+.game-tag.hot{background:var(--accent)}
+.game-tag.new{background:var(--accent-2);color:#000}
+
+/* === Shop === */
+.shop-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:16px}
+.shop-item{
+  background:var(--card);border-radius:var(--radius);padding:18px;
+  text-align:center;border:1px solid rgba(255,255,255,.05);
+  transition:transform .2s;
+}
+.shop-item:hover{transform:translateY(-4px);border-color:var(--accent-2)}
+.shop-icon{font-size:60px;margin-bottom:10px}
+.shop-name{font-weight:700;margin-bottom:6px}
+.shop-price{color:var(--accent-3);font-weight:800;margin-bottom:10px}
+.shop-item .btn{padding:8px 16px;font-size:14px;width:100%}
+
+/* === Avatar === */
+.avatar-wrap{display:grid;grid-template-columns:1fr 1.5fr;gap:30px;align-items:start}
+@media(max-width:800px){.avatar-wrap{grid-template-columns:1fr}}
+.avatar-preview{
+  background:linear-gradient(180deg,#1b2450,#0d1230);
+  border-radius:var(--radius);padding:40px;display:grid;place-items:center;
+  min-height:380px;border:1px solid rgba(255,255,255,.06);
+}
+.char{display:flex;flex-direction:column;align-items:center;gap:4px}
+.char-head{
+  width:90px;height:90px;border-radius:14px;
+  background:#ffd9b3;display:grid;place-items:center;font-size:54px;
+  box-shadow:0 8px 20px rgba(0,0,0,.4);
+}
+.char-body{
+  width:80px;height:110px;border-radius:8px;
+  background:var(--accent);
+  box-shadow:0 8px 20px rgba(0,0,0,.4);
+}
+.char-legs{
+  width:80px;height:70px;border-radius:6px;
+  background:#2a2f5e;
+  box-shadow:0 8px 20px rgba(0,0,0,.4);
+}
+.avatar-controls{
+  background:var(--card);border-radius:var(--radius);padding:24px;
+  border:1px solid rgba(255,255,255,.05);
+}
+.avatar-controls h3{margin:10px 0 12px;font-size:16px;color:var(--muted)}
+.picker{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px}
+.picker button{
+  width:50px;height:50px;border-radius:10px;
+  background:rgba(255,255,255,.06);font-size:24px;
+  transition:all .15s;
+  border:2px solid transparent;
+}
+.picker button:hover{background:rgba(255,255,255,.12)}
+.picker button.selected{border-color:var(--accent);background:rgba(255,42,85,.15)}
+.color-picker button{font-size:0}
+
+/* === Friends === */
+.friends-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+.friend-card{
+  background:var(--card);border-radius:12px;padding:14px;
+  display:flex;align-items:center;gap:12px;
+  border:1px solid rgba(255,255,255,.05);
+}
+.friend-avatar{
+  width:48px;height:48px;border-radius:50%;
+  display:grid;place-items:center;font-size:24px;
+  background:linear-gradient(135deg,var(--accent-2),var(--accent));
+  position:relative;
+}
+.friend-status{
+  position:absolute;bottom:0;right:0;
+  width:14px;height:14px;border-radius:50%;
+  background:var(--good);border:2px solid var(--card);
+}
+.friend-status.busy{background:var(--accent-3)}
+.friend-info{flex:1;min-width:0}
+.friend-info b{display:block;font-size:14px}
+.friend-info span{color:var(--muted);font-size:12px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* === Footer === */
+footer{
+  text-align:center;padding:40px 20px;color:var(--muted);
+  border-top:1px solid rgba(255,255,255,.05);margin-top:40px;
+}
+footer .social{margin-top:14px;display:flex;justify-content:center;gap:18px}
+footer .social a:hover{color:var(--accent-2)}
+
+/* === Modal === */
+.modal{
+  position:fixed;inset:0;z-index:100;
+  background:rgba(0,0,0,.7);backdrop-filter:blur(6px);
+  display:none;place-items:center;padding:20px;
+  animation:fadeIn .2s;
+}
+.modal.open{display:grid}
+.modal-content{
+  background:var(--bg-2);border-radius:20px;
+  width:100%;max-width:520px;max-height:90vh;overflow:auto;
+  border:1px solid rgba(255,255,255,.08);
+  box-shadow:0 20px 60px rgba(0,0,0,.6);
+  animation:pop .25s;
+}
+.modal-game{max-width:900px}
+.modal-head{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:18px 24px;border-bottom:1px solid rgba(255,255,255,.06);
+}
+.modal-head h3{font-size:22px}
+.close-btn{
+  background:rgba(255,255,255,.08);color:#fff;
+  width:36px;height:36px;border-radius:50%;font-size:16px;
+}
+.close-btn:hover{background:var(--accent)}
+.modal-body{padding:20px 24px}
+.modal-body ul{margin-top:14px;padding-left:0;list-style:none}
+.modal-body li{padding:8px 0;border-bottom:1px solid rgba(255,255,255,.05)}
+
+.game-host{padding:0;background:#0a0e1e}
+
+/* === Toast === */
+.toast{
+  position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(120px);
+  background:var(--card-2);color:#fff;padding:14px 24px;border-radius:12px;
+  box-shadow:0 10px 30px rgba(0,0,0,.5);
+  border:1px solid var(--accent-2);
+  font-weight:600;z-index:200;
+  transition:transform .3s;
+}
+.toast.show{transform:translateX(-50%) translateY(0)}
+
+/* === Game embedded UI === */
+.gw{padding:18px;color:#fff;font-family:inherit}
+.gw-hud{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:14px;flex-wrap:wrap;gap:10px;
+}
+.gw-hud .stat{
+  background:rgba(255,255,255,.06);padding:8px 14px;border-radius:10px;
+  font-weight:700;
+}
+.gw canvas{
+  display:block;width:100%;max-width:100%;
+  background:#000;border-radius:12px;
+  border:1px solid rgba(255,255,255,.08);
+  touch-action:none;
+}
+.gw-controls{
+  display:flex;gap:10px;margin-top:14px;justify-content:center;flex-wrap:wrap;
+}
+.gw-controls button{
+  padding:10px 18px;border-radius:10px;background:var(--accent);color:#fff;font-weight:700;
+}
+.gw-controls button.alt{background:rgba(255,255,255,.1)}
+.gw-instr{color:var(--muted);font-size:13px;margin-top:8px;text-align:center}
+
+/* === Animations === */
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes shimmer{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+@keyframes drift{to{background-position:50px 50px}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes pop{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
+
+/* === Mobile === */
+@media(max-width:720px){
+  .topbar{padding:12px 16px;flex-wrap:wrap;gap:10px}
+  .nav{order:3;width:100%;justify-content:center;flex-wrap:wrap}
+  .hero h1{font-size:38px}
+  .hero p{font-size:16px}
+  .hero-stats{gap:20px}
+  main>section{padding:40px 16px}
+  h2{font-size:26px}
+}

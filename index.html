@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>BLOXVERSE — играй во всё сразу</title>
+<link rel="stylesheet" href="styles.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23ff2a55'/%3E%3Ctext x='50%25' y='58%25' font-size='40' text-anchor='middle' fill='white' font-family='Arial' font-weight='900'%3EB%3C/text%3E%3C/svg%3E" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="logo">
+    <span class="logo-cube"></span>
+    <span class="logo-text">BLOX<span>VERSE</span></span>
+  </div>
+  <nav class="nav">
+    <a href="#home" class="active">Главная</a>
+    <a href="#games">Игры</a>
+    <a href="#shop">Магазин</a>
+    <a href="#avatar">Аватар</a>
+    <a href="#friends">Друзья</a>
+  </nav>
+  <div class="user">
+    <div class="coins"><span class="coin">◆</span><span id="coinCount">1250</span></div>
+    <div class="avatar-mini" title="Профиль">😎</div>
+  </div>
+</header>
+
+<main>
+  <section id="home" class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <h1>Добро пожаловать в <span class="gradient-text">BLOXVERSE</span></h1>
+      <p>Миллионы миров. Бесконечные приключения. Играй прямо в браузере — никаких загрузок.</p>
+      <div class="hero-actions">
+        <button class="btn btn-primary" onclick="scrollToGames()">▶ Играть сейчас</button>
+        <button class="btn btn-ghost" onclick="openModal('aboutModal')">Узнать больше</button>
+      </div>
+      <div class="hero-stats">
+        <div><b id="onlineCount">1 247 832</b><span>в сети</span></div>
+        <div><b>8</b><span>встроенных игр</span></div>
+        <div><b>∞</b><span>веселья</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="games" class="games">
+    <div class="section-head">
+      <h2>🔥 Популярные плейсы</h2>
+      <div class="filters">
+        <button class="filter-btn active" data-filter="all">Все</button>
+        <button class="filter-btn" data-filter="action">Экшен</button>
+        <button class="filter-btn" data-filter="casual">Казуальные</button>
+        <button class="filter-btn" data-filter="arcade">Аркады</button>
+      </div>
+    </div>
+
+    <div class="games-grid" id="gamesGrid">
+      <!-- Карточки рендерятся скриптом -->
+    </div>
+  </section>
+
+  <section id="shop" class="shop">
+    <h2>💎 Магазин предметов</h2>
+    <div class="shop-grid" id="shopGrid"></div>
+  </section>
+
+  <section id="avatar" class="avatar-sec">
+    <h2>👤 Твой аватар</h2>
+    <div class="avatar-wrap">
+      <div class="avatar-preview">
+        <div class="char">
+          <div class="char-head" id="avHead">😎</div>
+          <div class="char-body" id="avBody"></div>
+          <div class="char-legs"></div>
+        </div>
+      </div>
+      <div class="avatar-controls">
+        <h3>Голова</h3>
+        <div class="picker" id="headPicker">
+          <button>😎</button><button>🤖</button><button>👽</button>
+          <button>🐱</button><button>🦊</button><button>🐸</button>
+          <button>👻</button><button>🧠</button>
+        </div>
+        <h3>Цвет тела</h3>
+        <div class="picker color-picker" id="colorPicker">
+          <button style="background:#ff2a55"></button>
+          <button style="background:#00d4ff"></button>
+          <button style="background:#ffd60a"></button>
+          <button style="background:#7c4dff"></button>
+          <button style="background:#39ff14"></button>
+          <button style="background:#ff6b35"></button>
+        </div>
+        <button class="btn btn-primary" onclick="saveAvatar()">💾 Сохранить</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="friends" class="friends">
+    <h2>👥 Друзья онлайн</h2>
+    <div class="friends-grid" id="friendsGrid"></div>
+  </section>
+</main>
+
+<footer>
+  <p>© 2026 BLOXVERSE • Сделано с ❤ и кубиками</p>
+  <div class="social">
+    <a href="#">Discord</a><a href="#">YouTube</a><a href="#">VK</a><a href="#">TikTok</a>
+  </div>
+</footer>
+
+<!-- Модалка с игрой -->
+<div class="modal" id="gameModal">
+  <div class="modal-content modal-game">
+    <div class="modal-head">
+      <h3 id="gameTitle">Игра</h3>
+      <button class="close-btn" onclick="closeGame()">✕</button>
+    </div>
+    <div class="game-host" id="gameHost"></div>
+  </div>
+</div>
+
+<div class="modal" id="aboutModal">
+  <div class="modal-content">
+    <div class="modal-head"><h3>О BLOXVERSE</h3>
+      <button class="close-btn" onclick="closeModal('aboutModal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <p><b>BLOXVERSE</b> — это сборник встроенных мини-игр в стиле популярных метавселенных. Никаких загрузок: открывай карточку — играй сразу.</p>
+      <ul>
+        <li>🎮 8 готовых плейсов с уникальной механикой</li>
+        <li>💰 Единая валюта — Bloxs (◆)</li>
+        <li>👤 Настраиваемый аватар</li>
+        <li>🏆 Локальные рекорды и прогресс</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="games.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
